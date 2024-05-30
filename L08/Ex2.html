@@ -1,0 +1,73 @@
+<!--
+    TODO
+1. Create a function based object model for Student
+Accept inputs from the user, and create student objects
+2. Once created, store the objects in an array
+3. Using JSON methods, store the array into localstorage
+4. Display a list of objects that is retrieved from localstorage
+Gold Challenge
+Add code to have a new option "Lucky Student" to randomly retrieve an object from localstorage
+Add code to allow an option to delete a specific object upon selection. This object should be removed from the localstorage.
+Check that the name field have at least 3 characters
+    
+    read more 
+https://www.w3schools.com/js/js_input_examples.asp
+--> 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CA Form Object Local Storage</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>
+      
+      let studentArray = [];
+
+      //retrieve form information when submit
+      document.addEventListener('submit',function(event){
+        //prevent default action of the form from actually submitting
+        event.preventDefault();
+   
+        //@TODO 
+        //create objects based on object template and form data
+        //
+        //INSERT YOUR CODE HERE :)
+
+        function Student(studentName, studentMobile, studentClass) {
+            this.name = studentName;
+            this.mobile = studentMobile;
+            this.class = studentClass;
+        }
+        
+        //let's create our base and store myStudent
+        let myStudent = new Student("MyName", 100, 9);
+        
+        let arrayStudent = [];arrayStudent.push(myStudent);
+        localStorage.setItem("myStudentList", JSON.stringify(arrayStudent));
+
+
+        let myObj = { "name":myName, "mobile":myMobile, "class":myClass };
+        
+        myJSON = JSON.stringify(myObj);
+        localStorage.setItem("testJSON", myJSON);
+
+        //clear the form upon each sumission
+        document.getElementById('myFrm').reset();
+      });
+      //@TODO
+      //create a function based object "template"
+
+    </script>
+  </head>
+  <body>
+    <form id="myFrm">
+      <input type="text" placeholder="Enter Name" id="txtName" required>
+      <input type="number" placeholder="Enter Mobile" id="txtMobile" maxlength="8" required>
+      <input type="text" placeholder="Enter Class" id="txtClass" required>
+      <input type="submit">
+    </form>
+    
+  </body>
+</html>
