@@ -1,0 +1,19 @@
+head {
+  display: none;
+}
+
+body {
+  background-color:beige;
+}
+
+.food-type {
+  font-family:Arial, Helvetica, sans-serif;
+}
+.burgers-item, .cost{
+  font-family:'Times New Roman', Times, serif;
+  color:black;
+  width: 200px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}

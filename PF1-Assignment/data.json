@@ -1,0 +1,6 @@
+{
+    "burgers":[
+        {"Name": "Burger1", "Price": "5"},
+        {"Name": "Burger2", "Price": "4"}
+    ]
+}
