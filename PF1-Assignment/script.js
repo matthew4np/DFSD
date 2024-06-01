@@ -42,7 +42,7 @@ function addBurgerOrder(n, p) {
         else
         {
             alert(p);
-         l.push([{orderName: n, orderPrice: p, orderQuantuty: 1}]);
+            l.push([{orderName: n, orderPrice: p, orderQuantuty: 1}]);
         }
     }
 }
