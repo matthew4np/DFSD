@@ -8,53 +8,46 @@ const Obj = {
 
 const orderTotal = {
     totalPrice: 0,
-    orderItem: [{orderName: "Chicken Burger", orderPrice: 0, orderQuantity: 0}]}
+    orderBurgerItem: [{}],
 
-var list = "";
-var total = "";
+    AddBurger: function(){
+        // this.orderBurgerItem[this.orderBurgerItem.length] = {
+        //     name: n,
+        //     price: p,
+        //     quantity: q
+        // }
+        alert("hello");
+        //document.getElementsByClassName("cost").item(0).innerHTML = `<p>` + n + `</p>`; //orderTotal.orderBurgerItem.length;
+    },
 
-function displayBurgerItem() {
-    let text = "";
-    for (let i = 0; i < Obj.burger.length; i++)
-    {
-      text += `<h3 class=\"burgers-item\">` + Obj.burger[i].name + " " + Obj.burger[i].price + " " + Obj.burger[i].quantity + `<br>` + `<button type=\"button\" onclick=\"btnAdd(${i})\">+</button>` + `<button type=\"button\">` + Obj.burger[i].quantity + `</button>` + `<button type=\"button\" onclick=\"btnMinus(${i})\">-</button>` + `<br>` + `</h3>`;
-    }
-    return text;
-}
+    //Use the button Minus to remove the burger from the order burger array
+    RemoveBurger: function(n){
+        //find the index number of the chicken burger
+        let i = this.orderBurgerItem.findIndex(n);
+        //Use the splice function to delete the burger item
+        this.orderBurgerItems.splice(i, 1);
+        
+    },
 
-function displayOrderTotal() {
-    let text = "";
-    for (let i = 0; i < orderTotal.orderItem.length; i++)
-    {
-      text += "<h3>" + orderTotal.orderItem[i].orderName + " " + orderTotal.orderItem[i].orderPrice + " " + orderTotal.orderItem[i].orderQuantity  + "<br>" + "</h3>";
-    }
-    return text;
-}
-
-function addBurgerOrder(n, p) {
-    for (let l of orderTotal.orderItem)
-    {
-
-        if (n == l.orderName)
+    DisplayOrderTotal : function(){
+        let text = "";
+        for (let i = 0; i < orderTotal.orderItem.length; i++)
         {
-            l.orderQuantity++;
+          text += "<h3>" + orderTotal.orderItem[i].orderName + " " + orderTotal.orderItem[i].orderPrice + " " + orderTotal.orderItem[i].orderQuantity  + "<br>" + "</h3>";
         }
-        else
+        return text;
+    },
+
+    DisplayBurgerItem : function() {
+        let text = "";
+        for (let i = 0; i < Obj.burger.length; i++)
         {
-            alert(p);
-            l.push([{orderName: n, orderPrice: p, orderQuantuty: 1}]);
+            let j = `\"${Obj.burger[i].name}\", ${Obj.burger[i].price}, ${Obj.burger[i].quantity}`;
+    
+            text += `<h3 class=\"burgers-item\">` + Obj.burger[i].name + " " + Obj.burger[i].price + " " + Obj.burger[i].quantity + `<br>` + `<button type=\"button\" onclick=\"orderTotal.AddBurger(Obj.burger[i])\">+</button>` + `<button type=\"button\">` + Obj.burger[i].quantity + `</button>` + `<button type=\"button\" onclick=\"orderTotal.RemoveBurger(Obj.burger[i])\">-</button>` + `<br>` + `</h3>`;
         }
+        return text;
     }
 }
-
-document.getElementsByClassName("burgerchoice").item(0).innerHTML = displayBurgerItem();
-
-
-function btnAdd(j){
-    addBurgerOrder(Obj.burger[j].name, Obj.burger[j].price);
-    document.getElementsByClassName("cost").item(0).innerHTML = displayOrderTotal();
-}
-
-function btnMinus() {
-
-}
+//console.log(orderTotal.DisplayBurgerItem())
+document.getElementsByClassName("burgerchoice").item(0).innerHTML = orderTotal.DisplayBurgerItem();
