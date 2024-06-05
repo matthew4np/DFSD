@@ -3,7 +3,9 @@ const Obj = {
       {name:"Chicken Burger", price: 5, quantity: 1},
       {name:"Beef Burger", price: 6, quantity: 1},
       {name:"Fish Burger", price: 6, quantity: 1}
-    ]
+    ],
+    addQuantity: function(i){ return this.burger[i].quantity += 1},
+    minusQuantity: function(i){ return this.burger[i].quantity -= 1}
 }
 
 const orderTotal = {
@@ -17,7 +19,7 @@ const orderTotal = {
             quantity: Obj.burger[n].quantity
         })
         this.totalPrice = this.totalPrice + Obj.burger[n].price;
-        document.getElementsByClassName("cost").item(0).innerHTML = JSON.stringify(orderTotal);
+        orderTotal.displayBurgerTotal();
     },
 
     //Use the button Minus to remove the burger from the order burger array
@@ -30,12 +32,13 @@ const orderTotal = {
         let i = myArr.indexOf(h)
         if (i == -1)
         {
-            document.getElementsByClassName("cost").item(0).innerHTML = JSON.stringify(orderTotal)
+            orderTotal.displayBurgerTotal()
         } else
         {
             orderTotal.orderBurgerItem.splice(i, 1)
-            document.getElementsByClassName("cost").item(0).innerHTML = JSON.stringify(orderTotal)
+            orderTotal.displayBurgerTotal()
         }
+        Obj.burger[n].quantity -+ 1;
     },
 
     DisplayBurgerItem : function() {
@@ -47,7 +50,17 @@ const orderTotal = {
             text += `<h3 class=\"burgers-item\">` + Obj.burger[i].name + " " + Obj.burger[i].price + " " + Obj.burger[i].quantity + `<br>` + `<button type=\"button\" onclick=\"orderTotal.AddBurger(${i})\">+</button>` + `<button type=\"button\">` + Obj.burger[i].quantity + `</button>` + `<button type=\"button\" onclick=\"orderTotal.RemoveBurger(${i})\">-</button>` + `<br>` + `</h3>`;
         }
         return text;
+    },
+
+    displayBurgerTotal : function() {
+        //myObj = JSON.parse(this.responseText);
+        let text = "<table border='1'> <tr><th>Name</th><th>Price</th><th>Quantity</th></tr>"
+        for (let x in this.orderBurgerItem) {
+          text += "<tr><td>" + this.orderBurgerItem[x].name + "</td>" + "<td>" + this.orderBurgerItem[x].price + "</td>" + "<td>" + this.orderBurgerItem[x].quantity + "</td></tr>";
+        }
+        text += "<tr><td>Total Price</td><td>" + this.totalPrice + "</td></table>"
+        document.getElementsByClassName("cost").item(0).innerHTML = text;
     }
 }
-//console.log(orderTotal.DisplayBurgerItem());
+
 document.getElementsByClassName("burgerchoice").item(0).innerHTML = orderTotal.DisplayBurgerItem();
